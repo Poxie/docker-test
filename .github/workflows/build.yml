@@ -33,6 +33,7 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
+          echo "Project ID: $PROJECT_ID"
           gcloud run deploy app-test-service \
             --image europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest \
             --platform managed \
