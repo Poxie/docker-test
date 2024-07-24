@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "Project ID Length: ${#PROJECT_ID}"
             gcloud run deploy app-test-service \
-              --image europe-north1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/docker-test/app-test:latest \
+              --image europe-north1-docker.pkg.dev/ahlens-outlet/docker-test/app-test:latest \
               --platform managed \
               --region europe-north1 \
               --allow-unauthenticated
