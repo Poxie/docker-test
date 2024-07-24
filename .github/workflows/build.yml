@@ -33,9 +33,8 @@ jobs:
 
       - name: Deploy to Cloud Run
         run: |
-          echo "Project ID Length: ${#PROJECT_ID}"
-            gcloud run deploy app-test-service \
-              --image europe-north1-docker.pkg.dev/ahlens-outlet/docker-test/app-test:latest \
-              --platform managed \
-              --region europe-north1 \
-              --allow-unauthenticated
+          gcloud run deploy app-test-service \
+            --image europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest \
+            --platform managed \
+            --region europe-north1 \
+            --allow-unauthenticated
