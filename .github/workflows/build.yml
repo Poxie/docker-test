@@ -27,6 +27,6 @@ jobs:
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID }}
         run: |
-          gcloud auth configure-docker europe-north1-docker.pkg.dev
+          gcloud auth configure-docker europe-north1-docker.pkg.dev --verbosity=debug
           docker build -t europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test:latest .
           docker push europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test:latest
