@@ -8,6 +8,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+       PROJECT_ID: ${{ secrets.PROJECT_ID }}
     steps:
 
       - name: checkout code
@@ -24,8 +26,6 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
     
       - name: build and push the docker image
-        env:
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
         run: |
           gcloud auth configure-docker europe-north1-docker.pkg.dev --verbosity=debug
           docker build -t europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest .
