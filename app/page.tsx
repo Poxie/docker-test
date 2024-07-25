@@ -42,6 +42,9 @@ export default function Home() {
       <h1 className="text-5xl">
         this variable is secret: {process.env.NEXT_PUBLIC_SECRET_VARIABLE}
       </h1>
+      <h1>
+        this variable is also secret: {process.env.NEXT_PUBLIC_SECRET_VARIABLE2}
+      </h1>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
         <a

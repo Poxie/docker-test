@@ -11,6 +11,7 @@ jobs:
     env:
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       NEXT_PUBLIC_SECRET_VARIABLE: ${{ secrets.NEXT_PUBLIC_SECRET_VARIABLE }}
+      NEXT_PUBLIC_SECRET_VARIABLE2: ${{ secrets.NEXT_PUBLIC_SECRET_VARIABLE2 }}
     steps:
       - name: checkout code
         uses: actions/checkout@v2
