@@ -1,10 +1,10 @@
 version: '3.8'
 services:
-  app-test:
+  frontend:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_SECRET_VARIABLE: ${NEXT_PUBLIC_SECRET_VARIABLE}
         NEXT_PUBLIC_SECRET_VARIABLE2: ${NEXT_PUBLIC_SECRET_VARIABLE2}
-    image: "europe-north1-docker.pkg.dev/${PROJECT_ID}/docker-test/app-test:latest"
+    image: "europe-north1-docker.pkg.dev/${PROJECT_ID}/docker-test/frontend:latest"
