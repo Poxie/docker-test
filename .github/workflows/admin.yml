@@ -39,5 +39,6 @@ jobs:
         run: |
           gcloud run deploy admin \
             --image europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/admin:latest \
+            --allow-unauthenticated \
             --platform managed \
             --region europe-north1

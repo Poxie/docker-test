@@ -39,5 +39,6 @@ jobs:
         run: |
           gcloud run deploy frontend \
             --image europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/frontend:latest \
+            --allow-unauthenticated \
             --platform managed \
             --region europe-north1
