@@ -16,4 +16,4 @@ services:
       args:
         NEXT_PUBLIC_SECRET_VARIABLE: ${NEXT_PUBLIC_SECRET_VARIABLE}
         NEXT_PUBLIC_SECRET_VARIABLE2: ${NEXT_PUBLIC_SECRET_VARIABLE2}
-      image: "europe-north1-docker.pkg.dev/${PROJECT_ID}/docker-test/admin:latest"
+    image: "europe-north1-docker.pkg.dev/${PROJECT_ID}/docker-test/admin:latest"
