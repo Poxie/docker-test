@@ -9,12 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-       PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      NEXT_PUBLIC_SECRET_VARIABLE: ${{ secrets.NEXT_PUBLIC_SECRET_VARIABLE }}
     steps:
-
       - name: checkout code
         uses: actions/checkout@v2
-    
+
       - id: auth
         uses: google-github-actions/auth@v2
         with:
@@ -24,19 +24,19 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.PROJECT_ID }}
-    
-      - name: build and push the docker image
+
+      - name: Configure Docker to use the gcloud command-line tool as a credential helper
         run: |
           gcloud auth configure-docker europe-north1-docker.pkg.dev
-          docker build \
-            --build-arg NEXT_PUBLIC_SECRET_VARIABLE="${{ secrets.NEXT_PUBLIC_SECRET_VARIABLE }}" \
-            -t europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest .
-          docker push europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest
+
+      - name: Build and push Docker image with docker-compose
+        run: |
+          docker-compose up --build -d
+          docker-compose push app-test
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy app-test-service \
             --image europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest \
             --platform managed \
-            --region europe-north1 \
-            --allow-unauthenticated
+            --region europe-north1
