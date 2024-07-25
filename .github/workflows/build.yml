@@ -27,8 +27,10 @@ jobs:
     
       - name: build and push the docker image
         run: |
-          gcloud auth configure-docker europe-north1-docker.pkg.dev --verbosity=debug
-          docker build -t europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest .
+          gcloud auth configure-docker europe-north1-docker.pkg.dev
+          docker build \
+            --build-arg NEXT_PUBLIC_SECRET_VALUE=${{ secrets.NEXT_PUBLIC_SECRET_VALUE }} \
+            -t europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest .
           docker push europe-north1-docker.pkg.dev/$PROJECT_ID/docker-test/app-test:latest
 
       - name: Deploy to Cloud Run
